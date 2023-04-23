@@ -4,9 +4,7 @@ package Caballo;
 public class Caballo {
 	private int n;
 	private int[][] tablero;
-	private int[][] posiblesPasos = { { 2, 1 }, { 1, 2 }, { -1, 2 }, { -2, 1 }, 
-									 { -2, -1 }, { -1, -2 }, { 1, -2 }, { 2, -1 } };
-	Integer[] ubicacion = new Integer[2];
+	private int[][] posiblesPasos = {{ 2, 1 },{ 1, 2 },{ -1, 2 },{ -2, 1 },{ -2, -1 },{ -1, -2 },{ 1, -2 },{ 2, -1 } };
 
 	public Caballo(int n) {
 		this.n = n;
