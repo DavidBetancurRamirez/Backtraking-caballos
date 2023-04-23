@@ -1,12 +1,12 @@
 package Caballo;
 
-import java.util.Stack;
 
 public class Caballo {
 	private int n;
 	private int[][] tablero;
-	private int[][] posiblesPasos = { { 2, 1 }, { 1, 2 }, { -1, 2 }, { -2, 1 }, { -2, -1 }, { -1, -2 }, { 1, -2 }, { 2, -1 } };
-	private Stack<Integer[]> pilita = new Stack<Integer[]>();
+	private int[][] posiblesPasos = { { 2, 1 }, { 1, 2 }, { -1, 2 }, { -2, 1 }, 
+									 { -2, -1 }, { -1, -2 }, { 1, -2 }, { 2, -1 } };
+	Integer[] ubicacion = new Integer[2];
 
 	public Caballo(int n) {
 		this.n = n;
@@ -20,13 +20,10 @@ public class Caballo {
 		return resolver(fila, columna, 1);
 	}
 	private boolean resolver(int fila, int columna, int paso) {
-		tablero[fila][columna] = paso;
-		Integer[] algo = { fila, columna };
-		pilita.push(algo);
-		
 		if (paso == n * n)
-			return true; // Ya se visitaron todas las casillas
+			return true;
 		
+		tablero[fila][columna] = paso;		
 		boolean encontrado = false;
 		int i = 0;
 		
@@ -38,10 +35,8 @@ public class Caballo {
 			i++;
 		}
 		
-		if (!encontrado) {
+		if (!encontrado)
 			tablero[fila][columna] = 0;
-			pilita.pop();
-		}
 		
 		return encontrado;
 	}
