@@ -22,8 +22,9 @@ public class Caballo {
 		return resolver(fila, columna, 1, cantidadSoluciones);
 	}
 	private boolean resolver(int fila, int columna, int paso, int cantidadSoluciones) {
+		tablero[fila][columna] = paso;	
+		
 		if (paso == n * n) {
-			tablero[fila][columna] = paso;
 			try {
 				int[][] copiaMatriz = deepCopy(tablero);
 				tableros.push(copiaMatriz);
@@ -38,7 +39,6 @@ public class Caballo {
 			return false;
 		}
 		
-		tablero[fila][columna] = paso;	
 		boolean encontrado = false;
 		int i = 0;
 		
@@ -77,12 +77,15 @@ public class Caballo {
 	
 	public static int[][] deepCopy(int[][] original) throws IOException, ClassNotFoundException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream(baos);
-        oos.writeObject(original);
-        oos.flush();
-        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-        ObjectInputStream ois = new ObjectInputStream(bais);
-        return (int[][]) ois.readObject();
+		ObjectOutputStream oos = new ObjectOutputStream(baos);
+		oos.writeObject(original);
+		oos.flush();
+		ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+		ObjectInputStream ois = new ObjectInputStream(bais);
+		baos.close();
+		oos.close();
+		bais.close();
+		return (int[][]) ois.readObject();
     }
 
 	public static void main(String[] args) {
