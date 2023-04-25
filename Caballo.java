@@ -1,13 +1,12 @@
 package Caballo;
 
 import java.util.Stack;
-import java.io.*;
 
 
 public class Caballo {
 	private int n;
 	private int[][] tablero;
-	private final int[][] posiblesPasos = {{ 2, 1 },{ 1, 2 },{ -1, 2 },{ -2, 1 },{ -2, -1 },{ -1, -2 },{ 1, -2 },{ 2, -1 } };
+	private final int[][] posiblesPasos = {{ 2, 1 },{ 1, 2 },{ -1, 2 },{ -2, 1 },{ -2, -1 },{ -1, -2 },{ 1, -2 },{ 2, -1 }};
 	private Stack<int[][]> tableros = new Stack<int[][]>();
 	
 	public Caballo(int n) {
@@ -22,15 +21,11 @@ public class Caballo {
 		return resolver(fila, columna, 1, cantidadSoluciones);
 	}
 	private boolean resolver(int fila, int columna, int paso, int cantidadSoluciones) {
-		tablero[fila][columna] = paso;	
+		tablero[fila][columna] = paso;
 		
 		if (paso == n * n) {
-			try {
-				int[][] copiaMatriz = deepCopy(tablero);
-				tableros.push(copiaMatriz);
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
+			int[][] copiaMatriz = copiaMatriz(tablero);
+			tableros.push(copiaMatriz);
 			
 			if (tableros.size()==cantidadSoluciones)
 				return true;		
@@ -64,29 +59,26 @@ public class Caballo {
 		System.out.println("Cantidad soluciones encontradas: "+tableros.size());
 		int[][] t;
 		while(!tableros.isEmpty()) {
-			System.out.println("==========================");
+			System.out.println("====================================");
 			t = tableros.pop();
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++)
-					System.out.print(t[i][j] + " ");
+					System.out.printf("%4d", t[i][j]);
 				System.out.println();
 			}
-			System.out.println("==========================\n");
+			System.out.println("====================================\n");
 		}
 	}
 	
-	public static int[][] deepCopy(int[][] original) throws IOException, ClassNotFoundException {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ObjectOutputStream oos = new ObjectOutputStream(baos);
-		oos.writeObject(original);
-		oos.flush();
-		ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-		ObjectInputStream ois = new ObjectInputStream(bais);
-		baos.close();
-		oos.close();
-		bais.close();
-		return (int[][]) ois.readObject();
-    }
+	public int[][] copiaMatriz(int[][] original) {
+		int[][] nueva = new int[original.length][original.length];
+		for (int i = 0; i < nueva.length; i++) {
+			for (int j = 0; j < nueva.length; j++)
+				nueva[i][j] = original[i][j];
+		}
+		
+		return nueva;
+	}
 
 	public static void main(String[] args) {
 		Caballo caballo = new Caballo(8);
