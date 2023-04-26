@@ -9,15 +9,20 @@ public class Caballo {
 	private final int[][] posiblesPasos = {{ 2, 1 },{ 1, 2 },{ -1, 2 },{ -2, 1 },{ -2, -1 },{ -1, -2 },{ 1, -2 },{ 2, -1 }};
 	private Stack<int[][]> tableros = new Stack<int[][]>();
 	private Stack<int[][]> movimientos = new Stack<int[][]>();
+	private int filaI;
+	private int columnaI;
+	
 	
 	public Caballo(int n) {
 		this.n = n;
 		this.tablero = new int[n][n];
 		this.movimiento = new int[n*n][2];
+		filaI = 0;
+		columnaI = 0;
 	}
 
-	public boolean resolver() {
-		return resolver(0, 0, 1);
+	public boolean resolver(int cantidad) {
+		return resolver(filaI, columnaI, cantidad);
 	}
 	public boolean resolver(int fila, int columna, int cantidadSoluciones) {
 		return (cantidadSoluciones!=0) ? resolver(fila, columna, 1, cantidadSoluciones) : false;
@@ -88,12 +93,32 @@ public class Caballo {
 		
 		return nueva;
 	}
-
-	public static void main(String[] args) {
-		Caballo caballo = new Caballo(8);
-		caballo.resolver(0,0,3);
-		caballo.imprimir();
-		System.out.println("");
+	
+	public int[][] getMovimientos() {
+		return movimientos.pop();
 	}
+	
+	public void setFila(int numero) {
+		filaI = numero;
+	}
+	
+	public void setColumna(int numero) {
+		columnaI = numero;
+	}
+	
+	public void setDefaultValues() {
+		n = 8;
+		tablero = new int[n][n];
+		movimiento = new int[64][2];
+		filaI = 0;
+		columnaI = 0;
+	}
+
+//	public static void main(String[] args) {
+//		Caballo caballo = new Caballo(8);
+//		caballo.resolver(0,0,3);
+//		caballo.imprimir();
+//		System.out.println("");
+//	}
 
 }
