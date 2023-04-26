@@ -139,10 +139,15 @@ public class Main extends JFrame {
 		
 		panel1.btnPrimeraSln.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				String text = panel1.testFieldCantidad.getText();
+				if(!validarString(text)) {
+					panel1.error.setText("Ingrese la cantidad de soluciones");
+					return;
+				}
 				
 				int cantidacita = Integer.parseInt(panel1.testFieldCantidad.getText());
 				if(cantidacita == 0)
-					panel1.error.setText("No hay una solucion para este caballo, con estas configuraciones");
+					panel1.error.setText("Ingrese una cantidad de soluciones mayor a 0");
 				
 				else if (!caballo.resolver(cantidacita)) {
 					System.out.println("No se encontró una solución");
@@ -253,6 +258,10 @@ public class Main extends JFrame {
 			x0 = 20;
             y0 += 56;
 		}
+	}
+	
+	private static boolean validarString(String str) {
+	    return !(str == null || str.trim().isEmpty());
 	}
 
 
