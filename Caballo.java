@@ -76,7 +76,7 @@ public class Caballo {
 			System.out.println("====================================");
 			t = tableros.pop();
 			for (int i = 0; i < n; i++) {
-				for (int j = 0; j < n; j++)
+				for (int j = 0; j < n; j++)				
 					System.out.printf("%4d", t[i][j]);
 				System.out.println();
 			}

@@ -140,19 +140,26 @@ public class Main extends JFrame {
 		panel1.btnPrimeraSln.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				String text = panel1.testFieldCantidad.getText();
+				panel1.error.setText("");
 				if(!validarString(text)) {
 					panel1.error.setText("Ingrese la cantidad de soluciones");
 					return;
 				}
 				
 				int cantidacita = Integer.parseInt(panel1.testFieldCantidad.getText());
-				if(cantidacita == 0)
+				if(cantidacita == 0) {					
 					panel1.error.setText("Ingrese una cantidad de soluciones mayor a 0");
+					return;
+				}
 				
-				else if (!caballo.resolver(cantidacita)) {
+				long timeInicio=System.currentTimeMillis();
+				boolean isSolved = caballo.resolver(cantidacita);
+				long timeFin=System.currentTimeMillis();
+				if (!isSolved) {
 					System.out.println("No se encontró una solución");
 					panel1.error.setText("No hay una solucion para este caballo, con estas configuraciones");
 				} else {
+					panel1.lblTime.setText("Tiempo: "+(timeFin-timeInicio)+" ms");
 					caballo.imprimir();
 					fillTablero(caballo.getMovimientos());
 				}
@@ -179,6 +186,7 @@ public class Main extends JFrame {
 			}
 		});
 		
+		
 		contentPane.add(panel2);
 		
 	}
@@ -196,7 +204,7 @@ public class Main extends JFrame {
     int y = 22;
 	
 	public void fillTablero(int[][] movimientos) {
-	    int delay = 700; // 1 segundo de delay
+	    int delay = 700; // 700 milisegundos de delay
 	    javax.swing.Timer timer = new javax.swing.Timer(delay, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            if(counter < 64) { // Si aún no se han agregado todos los JLabels
@@ -219,6 +227,7 @@ public class Main extends JFrame {
 	    counter = 0;
 	    x = 20;
 	    y = 22;
+	    
 	}
 	
 	public void cleanTablero() {
@@ -226,6 +235,7 @@ public class Main extends JFrame {
 		panel1.lblTablero.repaint();
 		caballo.setDefaultValues();
 		panel1.error.setText("");
+		panel1.lblTime.setText("");
 	}
 	
 	public void setPositions() {

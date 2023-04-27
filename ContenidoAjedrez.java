@@ -53,6 +53,7 @@ public class ContenidoAjedrez extends JPanel {
 	JLabel error;
 	JLabel lblTablero;
 	JTextField testFieldCantidad;
+	JLabel lblTime;
 	
 	
 	public ContenidoAjedrez() {
@@ -115,6 +116,12 @@ public class ContenidoAjedrez extends JPanel {
 		add(testFieldCantidad);
 		testFieldCantidad.setColumns(10);
 		
+		lblTime = new JLabel("");
+		lblTime.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblTime.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTime.setBounds(800, 600, 400, 35);
+		add(lblTime);
+		
 		
 		
 		JPanel panelsitoDecoration = new JPanel();
@@ -129,7 +136,6 @@ public class ContenidoAjedrez extends JPanel {
 		titulo.setForeground(new Color(255, 255, 255));
 		titulo.setBounds(0, 62, 400, 64);
 		panelsitoDecoration.add(titulo);
-		Date fechaActual = new Date();
 		
 		error = new JLabel("");
 		error.setFont(new Font("Verdana", Font.BOLD, 12));
@@ -172,6 +178,7 @@ public class ContenidoAjedrez extends JPanel {
 		lblTablero.setBounds(150, 120, 500, 500);
 		add(lblTablero);
 		lblTablero.setIcon(new ImageIcon(ContenidoAjedrez.class.getResource("/imagenes/Tablero.png")));
+		
 //		
 //		JLabel lblPos1;
 //		lblPos1 = new JLabel("");
