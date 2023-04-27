@@ -46,7 +46,7 @@ public class Caballo {
 		boolean encontrado = false;
 		int i = 0;
 		
-		while (i < 8 && !encontrado) {
+		while (i < posiblesPasos.length && !encontrado) {
 			int nuevaFila = fila + posiblesPasos[i][0];
 			int nuevaColumna = columna + posiblesPasos[i][1];
 			if (esValida(nuevaFila, nuevaColumna))
