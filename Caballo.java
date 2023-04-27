@@ -4,28 +4,26 @@ import java.util.Stack;
 
 
 public class Caballo {
-	private int n;
+	private int n, filaI, columnaI;
 	private int[][] tablero, movimiento;
 	private final int[][] posiblesPasos = {{ 2, 1 },{ 1, 2 },{ -1, 2 },{ -2, 1 },{ -2, -1 },{ -1, -2 },{ 1, -2 },{ 2, -1 }};
 	private Stack<int[][]> tableros = new Stack<int[][]>();
 	private Stack<int[][]> movimientos = new Stack<int[][]>();
-	private int filaI;
-	private int columnaI;
 	
 	
 	public Caballo(int n) {
 		this.n = n;
 		this.tablero = new int[n][n];
 		this.movimiento = new int[n*n][2];
-		filaI = 0;
-		columnaI = 0;
+		this.filaI = 0;
+		this.columnaI = 0;
 	}
 
 	public boolean resolver(int cantidad) {
 		return resolver(filaI, columnaI, cantidad);
 	}
 	public boolean resolver(int fila, int columna, int cantidadSoluciones) {
-		return (cantidadSoluciones!=0) ? resolver(fila, columna, 1, cantidadSoluciones) : false;
+		return (cantidadSoluciones>0) ? resolver(fila, columna, 1, cantidadSoluciones) : false;
 	}
 	private boolean resolver(int fila, int columna, int paso, int cantidadSoluciones) {
 		tablero[fila][columna] = paso;
@@ -56,11 +54,8 @@ public class Caballo {
 			i++;
 		}
 		
-		if (!encontrado) {
+		if (!encontrado)
 			tablero[fila][columna] = 0;
-			int[] pasitoRemovido = {0,0};
-			movimiento[paso-1] = pasitoRemovido;
-		}
 		
 		return encontrado;
 	}
@@ -90,7 +85,6 @@ public class Caballo {
 			for (int j = 0; j < nueva[0].length; j++)
 				nueva[i][j] = original[i][j];
 		}
-		
 		return nueva;
 	}
 	
