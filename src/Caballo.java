@@ -1,5 +1,3 @@
-package Caballo;
-
 import java.util.Stack;
 
 

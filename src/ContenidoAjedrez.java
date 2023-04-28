@@ -1,6 +1,3 @@
-package Caballo;
-
-
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
@@ -11,13 +8,8 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.SwingConstants;
-import javax.swing.JPasswordField;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

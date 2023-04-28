@@ -1,5 +1,3 @@
-package Caballo;
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
@@ -9,14 +7,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.io.IOException;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -51,15 +45,9 @@ public class Main extends JFrame {
 	Caballo caballo = new Caballo(8);
 	
 	public Main() {
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setBounds(100, 100, 450, 300);
-//		contentPane = new JPanel();
-//		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-//
-//		setContentPane(contentPane);
 		setLocationByPlatform(true);
 		setUndecorated(true);
-		setTitle("Refugio patitas perdidas");
+		setTitle("Backtraking-caballos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1200, 720);
@@ -75,7 +63,7 @@ public class Main extends JFrame {
 		header.setBounds(0, 0, 1200, 80);
 		header.setLayout(null);
 		
-		JLabel titulo = new JLabel("Refugio");
+		JLabel titulo = new JLabel("Caballo");
 		titulo.setForeground(new Color(255, 255, 255));
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		titulo.setFont(new Font("Verdana", Font.BOLD, 30));
